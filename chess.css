@@ -6,3 +6,6 @@
 #chessboard tr:nth-child(2n+1) td:nth-child(2n+1) {background: #F0D9B5;}
 #chessboard tr:nth-child(2n+1) td:nth-child(2n),
 #chessboard tr:nth-child(2n) td:nth-child(2n+1) {background: #B58863;}
+
+
+#knight {font-size: 40px;}
