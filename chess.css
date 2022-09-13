@@ -7,7 +7,20 @@
 #chessboard tr:nth-child(2n+1) td:nth-child(2n),
 #chessboard tr:nth-child(2n) td:nth-child(2n+1) {background: #B58863;}
 
+#reset {display: flex; justify-content: center; align-items: center;}
+
+.button {display: inline-block;}
+.button {
+  padding: 20px;
+  background-color: #f0a373;
+  border: 3px solid;
+  border-color: #f58742;
+  border-radius: 30px;
+  font-size: 25px;
+}
 
 .knight {text-align: center; font-size: 40px;}
 
 .focus {border: 1px solid;}
+
+.noselect {-webkit-user-select: none; user-select: none;}

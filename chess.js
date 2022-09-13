@@ -1,4 +1,5 @@
 curPos = null;
+visited = new Set("00");
 
 function generateBoard() {
     const body = document.body;
@@ -9,6 +10,7 @@ function generateBoard() {
         const row = table.insertRow();
         for (let j = 0; j < 8; j++) {
             let cell = row.insertCell();
+            cell.setAttribute('id', i + '' + j);
             cell.setAttribute("onclick", 'moveKnight(this)');
             cell.setAttribute('class', 'knight');
             cell.setAttribute('row', i);
@@ -22,7 +24,13 @@ function generateBoard() {
         }
     }
 
-    body.appendChild(table);
+    let existingBoard = document.getElementById("chessboard");
+    let resetButton = document.getElementById("reset");
+    if (existingBoard) {
+        body.removeChild(existingBoard);
+    }
+
+    body.insertBefore(table, resetButton);
 }
 
 function moveKnight(square) {
@@ -36,10 +44,16 @@ function moveKnight(square) {
     newCol = square.getAttribute('col');
 
     if (curRow != newRow && curCol != newCol && Math.abs(newRow - curRow) + Math.abs(newCol - curCol) === 3) {
+        visited.add(square.id)
         square.innerHTML = curPos.innerHTML;
         curPos.innerHTML = 'X';
         curPos = square;
+
     }
+}
+
+function resetBoard() {
+    generateBoard();
 }
 
 generateBoard();
