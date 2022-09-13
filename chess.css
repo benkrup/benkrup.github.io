@@ -8,4 +8,6 @@
 #chessboard tr:nth-child(2n) td:nth-child(2n+1) {background: #B58863;}
 
 
-#knight {font-size: 40px;}
+.knight {text-align: center; font-size: 40px;}
+
+.focus {border: 1px solid;}

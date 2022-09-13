@@ -1,5 +1,4 @@
-firstClick = null;
-tmpStr = "";
+curPos = null;
 
 function generateBoard() {
     const body = document.body;
@@ -10,11 +9,14 @@ function generateBoard() {
         const row = table.insertRow();
         for (let j = 0; j < 8; j++) {
             let cell = row.insertCell();
-            cell.setAttribute('id', i + j);
-            cell.setAttribute("onclick", 'swap(this)');
+            cell.setAttribute("onclick", 'moveKnight(this)');
+            cell.setAttribute('class', 'knight');
+            cell.setAttribute('row', i);
+            cell.setAttribute('col', j);
 
             if (i === 0 && j === 0) {
-                cell.innerHTML = 'hi';
+                cell.innerHTML = '&#9822;';
+                curPos = cell;
             }
 
         }
@@ -23,15 +25,20 @@ function generateBoard() {
     body.appendChild(table);
 }
 
-function swap(square) {
-    if (firstClick) {
-        tmpStr = square.innerHTML;
-        square.innerHTML = firstClick.innerHTML;
-        firstClick.innerHTML = tmpStr;
-        firstClick = null;
+function moveKnight(square) {
+    if (square.innerHTML === 'X') {
+        return;
     }
-    else {
-      firstClick = square;
+
+    curRow = curPos.getAttribute('row');
+    curCol = curPos.getAttribute('col');
+    newRow = square.getAttribute('row');
+    newCol = square.getAttribute('col');
+
+    if (curRow != newRow && curCol != newCol && Math.abs(newRow - curRow) + Math.abs(newCol - curCol) === 3) {
+        square.innerHTML = curPos.innerHTML;
+        curPos.innerHTML = 'X';
+        curPos = square;
     }
 }
 
